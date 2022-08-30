@@ -7,11 +7,20 @@ const UserDetails = () => {
     const [account, setaccount] = useState("")
     const [receiver, setreceiver] = useState("")
     const [amount, setamount] = useState("")
-    let url='http://localhost:5008/user/signin'
+    let url = '/user/dashboard'
     let date = new Date().getDate()
     let month = new Date().getMonth()
     let year = new Date().getFullYear()
     let currentDate =`${date}-${month}-${year}`
+    const [user, setuser] = useState({})
+    useEffect(()=>{
+      const currentUser = localStorage.email
+      console.log(currentUser);
+      axios.post(url,{currentUser}).then((result)=>{
+        console.log(result)
+        setuser(result.data.result) 
+      })
+  },[])
     function transfer() {
         alert("transfer sucessful")
         let id=user._id
@@ -20,15 +29,7 @@ const UserDetails = () => {
         axios.post((err,transfer)=>{
           console.log(transfer);
         })
-    }
-    const [user, setuser] = useState({})
-    useEffect(()=>{
-        axios.get(url).then((result)=>{
-          console.log(result)
-          setuser(result.data)
-      
-        })
-    },[])
+    }  
     const wallet=()=>{
     navigate("/wallet")
     }
@@ -37,7 +38,7 @@ const UserDetails = () => {
     <>
       <div className="cardneed  mx-auto  col-lg-10 py-3 row">
         <div className="border col-lg-3 name">
-          <div className="py-2  d-flex align-items-center">
+          <div className="py-2 d-flex align-items-center">
             <div className="profileimg "><img src={user.image} alt="" /></div>
             <p className=""> Hello {user.firstname}</p>
           </div>

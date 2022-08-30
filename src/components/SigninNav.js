@@ -9,7 +9,7 @@ const SigninNav = () => {
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
     const [errmessage, seterrmessage] = useState("")
-    let url='http://localhost:5000/user/signin'
+    let url='/user/signin'
     const navigate = useNavigate();
     
     const signin = () => {
