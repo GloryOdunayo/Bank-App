@@ -1,0 +1,38 @@
+@media all and (min-width: 992px) {
+    .openaccount {
+        margin-left: 600px;
+        background-color: #EFF1FF;
+        transition: 1s ease-in-out;
+        border: 1px solid #40196D;
+        color: #40196D;
+    }
+
+    .openaccount:hover {
+        transform: translateY(-3px);
+    }
+
+    #signupimg {
+        animation: move 2s linear backwards;
+        position: relative;
+    }
+
+    @keyframes move {
+        0% {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateX(0%);
+        }
+    }
+}
+
+#browserAddress {
+    background-color: #EFF1FF;
+    color: #40196D;
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}

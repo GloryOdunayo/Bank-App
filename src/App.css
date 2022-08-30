@@ -1,38 +1,309 @@
-.App {
-  text-align: center;
+#main{
+  overflow-x: hidden;
 }
+#new{
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  font-size: 55px;
+  font-weight: bolder;
 }
+.bt{
+  border-radius: 50px;
+  background-color:#B45BAF ;
+}
+#card{
+  height: 400px;
+  width: 500px;
+  position: relative;
+  left: 200px;
+  animation: move 4s linear backwards;
+}
+.dash{
+  background-color: rgba(220, 215, 215, 0.334);
+}
+.htm{
+height: 38vh; 
+border-radius: 5px;
+/* background-image: url(/src/assets/imges/undraw2.svg);  */
+background-position: center;
+background-repeat: no-repeat;
+background-size: contain;
+}
+@keyframes move {
+  0%{
+      /* transform:translateX(100%) ; */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+
+      opacity: 0;
+  }
+  100%{
+      /* transform:translateX(0%) ; */
+      opacity: 1;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#card2{
+  height: 200px;
+  width: 200px; 
+  animation: move2 2s linear backwards; 
+  display: none;
+}
+@keyframes move2 {
+  0%{
+      transform:translateX(100%) ;}
+  
+}
+#card3{
+  height: 200px;
+  width: 200px; 
+  animation: move3 2s linear backwards; 
+  display: none;
+}
+.in{
+  background: none;
+  border: none;
+  border-bottom: 1px solid;
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes move3 {
+  0%{
+      transform:translateX(-40%) ;}
+  
+}
+#card4{
+  height: 200px;
+  width: 200px; 
+  position: absolute;
+  bottom: 0px;
+  left: 300px;
+  animation: move4 5s linear backwards; 
+}
+@keyframes move4 {
+  0%{
+      transform:translateX(100%) ;}
+  }
+#card6{
+  height: 400px;
+  width: 350px; 
+  bottom: 0px;
+  left: 0px;
+  position: absolute;
+  animation: move6 5s linear backwards;     
+}
+.make{
+  color: #B45BAF;
+}
+.bankexpreience{
+  background-color: #B45BAF;
+}
+@keyframes move6 {
+  0%{
+      transform:translateY(-100%) ;}
+  }
+  #first1{
+      height: 25vh;
+      /* background-image: url(/src/assets/imges/h7.webp); */
+      background-repeat:no-repeat;
+      background-size: contain;
+      background-position: center;
+  }
+  #first2{
+      height: 25vh;
+      /* background-image: url(/src/assets/imges/h8.webp); */
+      background-repeat:no-repeat;
+      background-size: contain;
+      background-position: center;
+  }
+  #first3{
+      height: 25vh;
+      /* background-image: url(/src/assets/imges/h5.webp); */
+      background-repeat:no-repeat;
+      background-size: contain;
+      background-position: center;
+  }
+  #signup1{
+      height: 100vh;
+  }
+  #signup2{
+      height: 80vh;
+      background: linear-gradient(#8AD8FC,#DE9FFB);
+  }
+  .wel{
+      font-size: 25px;
+      font-weight: bold;
+  }
+
+  .signupimg{
+ height: 67vh;
+ /* background-image: url(/src/assets/imges/signup\ img.PNG); */
+  }
+  .need2{
+      height: 20vh;
+  }
+  .signinimg{
+  height: 50vh; 
+  /* background-image: url(/src/assets/imges/undraw1.svg);  */
+  background-repeat:no-repeat;
+      background-size: contain;
+      background-position: center;
+  }.card1a{
+      line-height: 15px;
+   }
+  
+.dashboard {
+  background: linear-gradient(#5dbeec,#a966c8);
+  /* background: #262626; */
+ height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+.cardneed {
+  height: 90vh;
+  
+  background-color: rgba(255, 255, 255, 0.3);
+  /* background-color: #F8EDFD; */
+  border-radius: 12px;
+  
+}
+.profileimg{
+  border: 1px solid;
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+  /* background-image: url(/src/assets/imges/profile.PNG); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.name{
+ 
+  background: rgba(253, 236, 236, 0.05);
+  border-radius: 15px;
+  
+}
+.dashboardcard{
+  background-color: #f8edfd96;
+  border-radius: 15px;
+}
+.cad1{
+  height: 30vh;
+  border-radius: 15px;
+  background: linear-gradient(#e0e5e7,#a966c8);
+  color:rgb(235, 233, 233);
+}
+.transfer{
+  height: 35vh;
+}
+.hist{
+  height: 35vh;
+  line-height: 12px;
+}
+.head{
+  font-size: smaller;
+  border-bottom:1px solid rgb(201, 200, 200);
+}
+.bod{
+  font-size: 10px;
+}
+.bod button{
+  font-size: 10px;
+}
+.over{
+  overflow: scroll;
+  height: 25vh;
+}
+.app1{
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  background-color: #40196D;
+  
+}
+.app2{
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  background-color: #40196D;
+  
+}
+.app3{
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  background-color: #40196D;
+  
+}
+.app4{
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  background-color: #40196D;
+  
+}
+@media (max-width: 767.98px) {
+  #new{
+     border:2px solid rgb(223, 221, 221);
+      font-size: 40px;
+  font-weight: bolder;
   }
-  to {
-    transform: rotate(360deg);
+  #card2{
+       width: 150px;
+       display:block;     
   }
+  .card1a{
+     line-height: 10px;
+  }
+  .name{
+      margin: 5px 0px 20px 0px;
+  }
+  #card3{
+      width: 180px;
+    display:block !important;  
+  }
+  #card{
+      height: 50vh;
+}.but{
+  display: none;
+}
+.small{
+  border-radius: 10px;
+}
+.dashboard{
+  height:200vh;
+}
+.dashboardcard{
+  height:160vh;
+  margin: 20px 0px 20px 0px;
+
+}
+.cardneed{
+  height: 200vh;
+}
+
+  .wel{
+      font-size: 20px;
+      font-weight: bold;
+  }
+  .hope{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+  }
+  .need{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+  }
+  .signupimg{
+    display: none;  
+  }
+  .signinimg{
+    display: none;  
+  }
+  .smllno{
+      display: none !important;
+  }
+  .cardmain{
+      display: none;
+  }
+  .bank2{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+  } 
 }
