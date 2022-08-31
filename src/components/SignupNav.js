@@ -12,13 +12,13 @@ const SignupNav = () => {
     const [lastname, setlastname] = useState("");
     const [address, setaddress] = useState("");
     const [errmessage, seterrmessage] = useState("")
-    const [Balance, setBalance] = useState(0)
+    const [Balance, setBalance] = useState(10000)
     let date = new Date().getDate()
     let month = new Date().getMonth()
     let year = new Date().getFullYear()
     let currentDate =`${date}-${month}-${year}`
     const navigate = useNavigate();
-    const url = "/user/signup";
+    const url = "http://localhost:5000/user/signup";
 
     const signup =()=>{
         if(firstname!=="" && lastname!==""&& email!=="" &&password!==""&&phonenum!==""&&address!=""){

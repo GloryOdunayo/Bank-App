@@ -4,46 +4,76 @@ import { Link, useNavigate } from "react-router-dom";
 
 const UserDetails = () => {
     const navigate =useNavigate()
+    const [myfile, setmyfile] = useState('')
+    const [myImage, setmyImage] = useState('')
     const [account, setaccount] = useState("")
-    const [receiver, setreceiver] = useState("")
+    const [name, setname] = useState("")
+    const [password, setpassword] = useState("")
     const [amount, setamount] = useState("")
-    let url = '/user/dashboard'
+    const [fund, setfund] = useState()
+    const [user, setuser] = useState({})
+
+    let url = 'http://localhost:5000/'
+    const endpoint = '/user/upload'
     let date = new Date().getDate()
     let month = new Date().getMonth()
     let year = new Date().getFullYear()
+    let time = new Date().toLocaleTimeString()
     let currentDate =`${date}-${month}-${year}`
-    const [user, setuser] = useState({})
+    const [funded, setfunded] = useState({})
+    const currentUser = localStorage.email
     useEffect(()=>{
-      const currentUser = localStorage.email
       console.log(currentUser);
-      axios.post(url,{currentUser}).then((result)=>{
-        console.log(result)
-        setuser(result.data.result) 
+      axios.post(url+"user/dashboard",{currentUser}).then((result)=>{
+        setuser(result.data) 
+        // console.log(result.data);        
       })
-  },[])
+      console.log(user);
+    },[])
+    const convertToString=(e)=>{
+      let myImage = e.target.files[0]
+      let reader = new FileReader()
+      reader.readAsDataURL(myImage)
+      reader.onload=()=>{
+        setmyfile(reader.result)
+      }
+      axios.post(endpoint,{myfile}).then((response)=>{
+        console.log(response);
+        console.log(response.data);
+        setmyImage(response.data.image)
+      })
+    }
     function transfer() {
-        alert("transfer sucessful")
-        let id=user._id
-        let transfer ={account:account,amount:amount,receiver:receiver,id:id,currentDate:currentDate}
+        let transfer ={account:account,amount:amount,name:name,email:currentUser,currentDate:currentDate,time:time,password:password}
         console.log(transfer);
-        axios.post((err,transfer)=>{
+        axios.post(url+'user/transfer',transfer).then((result)=>{
           console.log(transfer);
+          setuser(result.data)
         })
-    }  
+    } 
+    function funds() {
+      let myFund ={fund:fund,email:currentUser,currentDate:currentDate,time:time}
+      console.log(myFund);
+      axios.post(url+'user/fund',myFund).then((result)=>{
+        console.log(myFund);
+        setfunded(result.data)
+      })
+  } 
     const wallet=()=>{
     navigate("/wallet")
     }
 
   return (
     <>
-      <div className="cardneed  mx-auto  col-lg-10 py-3 row">
+    <div className="dashboard">
+      <div className="cardneed mx-auto  col-lg-10 py-3 row">
         <div className="border col-lg-3 name">
           <div className="py-2 d-flex align-items-center">
-            <div className="profileimg "><img src={user.image} alt="" /></div>
+            <div className="profileimg "><img src={myImage} alt="" /></div>
             <p className=""> Hello {user.firstname}</p>
           </div>
           <div>
-            <input type="file" name="add profile" id="" className="b-none" />
+            <input type="file" name="add profile" id="" className="b-none" onChange={(e)=>convertToString(e)}/>
           </div>
 
           <div className="mt-5">
@@ -135,9 +165,14 @@ const UserDetails = () => {
                   ></div>
                   Withdraw
                 </div>
-                <div className="col-6 text-center my-2">
-                  <div className="app3 border mx-auto"></div>
-                  Request
+                <div className="col-6  text-center my-2">
+                  <div
+                    className="app2 border mx-auto "
+                    type="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal3"
+                  ></div>
+                  Fund
                 </div>
                 <div className="col-6 text-center my-2">
                   <div className="app4 border mx-auto" onClick={wallet}></div>
@@ -178,28 +213,27 @@ const UserDetails = () => {
           </div>
         </div>
         <div
-        class="modal fade "
+        className="modal fade "
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
                 Transfer
               </h5>
-              <h3
-                type="button"
-                class="btn-close "
+              <h3 type="button"
+                className="btn-close "
                 data-bs-dismiss="modal"
                 aria-label="Close"
               >
                 X
               </h3>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <input
                 type="text"
                 className="form-control my-2"
@@ -210,8 +244,14 @@ const UserDetails = () => {
                 type="text"
                 className="form-control my-2"
                 placeholder="Description of name"
-                onChange={(e) => setreceiver(e.target.value)}
+                onChange={(e) => setname(e.target.value)}
               />
+                <input
+                  type="text"
+                  className="form-control my-2"
+                  placeholder=" Password"
+                  onChange={(e) => setpassword(e.target.value)}
+                />
               <input
                 type="text"
                 className="form-control my-2"
@@ -219,15 +259,15 @@ const UserDetails = () => {
                 onChange={(e) => setamount(e.target.value)}
               />
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary" onClick={transfer}>
+              <button type="button" className="btn btn-primary" onClick={transfer}>
                 Send
               </button>
             </div>
@@ -235,28 +275,28 @@ const UserDetails = () => {
         </div>
       </div>
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal2"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
                 Withdraw
               </h5>
               <h3
                 type="button"
-                class="btn-close "
+                className="btn-close "
                 data-bs-dismiss="modal"
                 aria-label="Close"
               >
                 X
               </h3>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <input
                 type="text"
                 className="form-control my-2"
@@ -273,15 +313,60 @@ const UserDetails = () => {
                 placeholder=" Amount"
               />
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="button" className="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="modal fade"
+        id="exampleModal3"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
+                Fund
+              </h5>
+              <h3
+                type="button"
+                className="btn-close "
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                X
+              </h3>
+            </div>
+            <div className="modal-body">
+              <input
+                type="text"
+                className="form-control my-2"
+                placeholder="Amount"
+                onChange={(e)=>setfund(e.target.value)} 
+              />
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" className="btn btn-primary" onClick={funds}>
                 Save changes
               </button>
             </div>
@@ -289,8 +374,70 @@ const UserDetails = () => {
         </div>
       </div>
       </div>
+
+      <div
+        className="modal fade"
+        id="exampleModal3"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
+                Withdraw
+              </h5>
+              <h3
+                type="button"
+                className="btn-close "
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                X
+              </h3>
+            </div>
+            <div className="modal-body">
+              <input
+                type="text"
+                className="form-control my-2"
+                placeholder="Enter account number"
+              />
+              <input
+                type="text"
+                className="form-control my-2"
+                placeholder="Description of name"
+              />
+              <input
+                type="text"
+                className="form-control my-2"
+                placeholder=" Amount"
+              />
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" className="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      </div>
+      </div>
+
+      
     </>
   );
 };
 
 export default UserDetails;
+

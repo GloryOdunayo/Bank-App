@@ -23,7 +23,7 @@
 .htm{
 height: 38vh; 
 border-radius: 5px;
-/* background-image: url(/src/assets/imges/undraw2.svg);  */
+background-image: url(/src/assets/images/svgexport-11.svg); 
 background-position: center;
 background-repeat: no-repeat;
 background-size: contain;
@@ -98,66 +98,13 @@ background-size: contain;
   0%{
       transform:translateY(-100%) ;}
   }
-  #first1{
-      height: 25vh;
-      /* background-image: url(/src/assets/imges/h7.webp); */
-      background-repeat:no-repeat;
-      background-size: contain;
-      background-position: center;
-  }
-  #first2{
-      height: 25vh;
-      /* background-image: url(/src/assets/imges/h8.webp); */
-      background-repeat:no-repeat;
-      background-size: contain;
-      background-position: center;
-  }
-  #first3{
-      height: 25vh;
-      /* background-image: url(/src/assets/imges/h5.webp); */
-      background-repeat:no-repeat;
-      background-size: contain;
-      background-position: center;
-  }
-  #signup1{
-      height: 100vh;
-  }
-  #signup2{
-      height: 80vh;
-      background: linear-gradient(#8AD8FC,#DE9FFB);
-  }
-  .wel{
-      font-size: 25px;
-      font-weight: bold;
-  }
-
-  .signupimg{
- height: 67vh;
- /* background-image: url(/src/assets/imges/signup\ img.PNG); */
-  }
-  .need2{
-      height: 20vh;
-  }
-  .signinimg{
-  height: 50vh; 
-  /* background-image: url(/src/assets/imges/undraw1.svg);  */
-  background-repeat:no-repeat;
-      background-size: contain;
-      background-position: center;
-  }.card1a{
-      line-height: 15px;
-   }
-  
 .dashboard {
-  background: linear-gradient(#5dbeec,#a966c8);
+  background:#970ed6;
   /* background: #262626; */
  height: 100vh;
 }
-
-
 .cardneed {
-  height: 90vh;
-  
+  height: 90vh; 
   background-color: rgba(255, 255, 255, 0.3);
   /* background-color: #F8EDFD; */
   border-radius: 12px;
